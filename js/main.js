@@ -3,19 +3,24 @@ let second = 1;
 let y;
 let x;
 
-function fibonacci(x) {
-  for (let i = 2; i <= x; i++) {
-    y = first + second;
-    first = second;
-    second = y;
-    console.log(y);
-    document.getElementById("Y").innerHTML = y;
-  }
+// function fibonacci(x) {
+//   for (let i = 2; i <= x; i++) {
+//     y = first + second;
+//     first = second;
+//     second = y;
+//     console.log(y);
+//     document.getElementById("Y").innerHTML = y;
+//   }
+// }
+function fibRecursive(x) {
+  if (x < 2) return x;
+  return fibRecursive(x - 1) + fibRecursive(x - 2);
 }
 
 function getX() {
   let x = document.getElementById("X").value;
-  fibonacci(x);
+  document.getElementById("Y").innerHTML = fibRecursive(x);
+  // fibonacci(x);
   console.log(x);
 }
 document.getElementById("myButton").addEventListener("click", getX);
