@@ -1,0 +1,88 @@
+.header {
+  position: absolute;
+  width: 672px;
+  height: 79px;
+  left: 164px;
+  top: 100px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 79px;
+  /* identical to box height, or 110% */
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #373a3c;
+}
+.fibonacciOf {
+  position: absolute;
+  width: 189px;
+  height: 24px;
+  left: 169px;
+  top: 236px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #373a3c;
+}
+.myInput {
+  position: absolute;
+  width: 86px;
+  height: 38px;
+  left: 372px;
+  top: 229px;
+
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.myButton {
+  position: absolute;
+  width: 39px;
+  height: 38px;
+  left: 100px;
+
+  background: #0275d8;
+  border: 1px solid #0275d8;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.input-group > .form-control:not(:last-child) {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.btn-outline-secondary {
+  color: white;
+}
+.fibonacciAnswer {
+  position: absolute;
+  width: 28px;
+  height: 24px;
+  left: 525px;
+  top: 236px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: flex-end;
+  text-decoration-line: underline;
+
+  color: #373a3c;
+}
