@@ -86,3 +86,46 @@
 
   color: #373a3c;
 }
+.results {
+  position: absolute;
+  width: 182px;
+  height: 72px;
+  left: 164px;
+  top: 347px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 54px;
+  line-height: 72px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #373a3c;
+}
+.loader {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 521px;
+  top: 228px;
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid black;
+  border-right: 6px solid black;
+  border-bottom: 6px solid black;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader:after {
+  display: hidden;
+}

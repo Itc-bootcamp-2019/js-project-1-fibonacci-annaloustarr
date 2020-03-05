@@ -18,6 +18,8 @@ let x;
 // }
 
 function getFibonacci(x) {
+  const loader = `<div class="loader"></div>`;
+  document.getElementById("loaderHere").innerHTML = loader;
   fetch(`http://localhost:5050/fibonacci/${x}`)
     .then(response => {
       console.log(response);
@@ -27,6 +29,8 @@ function getFibonacci(x) {
       let y = data.result;
       console.log(y);
       document.getElementById("Y").innerHTML = y;
+      const loaderhidden = `<div class="loader:after"></div>`;
+      document.getElementById("loaderHere").innerHTML = loaderhidden;
     })
     .catch(error => {
       console.log("error!");
@@ -46,3 +50,9 @@ function getX() {
   console.log(x);
 }
 document.getElementById("myButton").addEventListener("click", getX);
+
+function getLoader() {
+  let loader = `<div class="loader"></div>`;
+  document.getElementById("Y").innerHTML = loader;
+}
+document.getElementById("myButton").addEventListener("click", getLoader);
