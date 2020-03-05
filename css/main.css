@@ -129,3 +129,33 @@
 .loader:after {
   display: hidden;
 }
+.errorBox {
+  position: absolute;
+  width: 180px;
+  height: 33px;
+  left: 278px;
+  top: 275px;
+
+  background: #f2dede;
+  border: 1px solid #ebcccc;
+  border-radius: 4px;
+}
+.thrownError {
+  position: absolute;
+  width: 176.59px;
+  height: 14.4px;
+  left: 281.41px;
+  top: 287px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+  display: flex;
+  align-items: flex-end;
+  color: #a94442;
+  z-index: 999;
+}

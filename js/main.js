@@ -20,6 +20,19 @@ let x;
 function getFibonacci(x) {
   const loader = `<div class="loader"></div>`;
   document.getElementById("loaderHere").innerHTML = loader;
+  try {
+    if (x == "") throw "empty";
+    if (isNaN(x)) throw "not a number";
+    x = Number(x);
+    if (x > 50) throw "Can't be larger than 50";
+  } catch (error) {
+    console.log("error!");
+    const errorBox = `<div class="errorBox"></div>`;
+    const loaderhidden = `<div class="loader:after"></div>`;
+    document.getElementById("thrownError").innerHTML = error;
+    document.getElementById("loaderHere").innerHTML = loaderhidden;
+    document.getElementById("errorBox").innerHTML = errorBox;
+  }
   fetch(`http://localhost:5050/fibonacci/${x}`)
     .then(response => {
       console.log(response);
@@ -31,10 +44,6 @@ function getFibonacci(x) {
       document.getElementById("Y").innerHTML = y;
       const loaderhidden = `<div class="loader:after"></div>`;
       document.getElementById("loaderHere").innerHTML = loaderhidden;
-    })
-    .catch(error => {
-      console.log("error!");
-      console.error(error);
     });
 }
 
