@@ -20,6 +20,28 @@ let x;
 function getFibonacci(x) {
   const loader = `<div class="loader"></div>`;
   document.getElementById("loaderHere").innerHTML = loader;
+
+  fetch(`http://localhost:5050/fibonacci/${x}`).then(response => {
+    console.log(response);
+    if (response.status === 400) {
+      console.log("is this a 400 error?");
+      response.text().then(function(text) {
+        console.log(text);
+        document.getElementById("Y").innerHTML = text;
+      });
+    } else {
+      return response.json().then(function(data) {
+        let y = data.result;
+        console.log(y);
+        document.getElementById("Y").innerHTML = y;
+        const loaderhidden = `<div class="loader:after"></div>`;
+        document.getElementById("loaderHere").innerHTML = loaderhidden;
+      });
+    }
+  });
+}
+
+function validateX(x) {
   try {
     if (x == "") throw "empty";
     if (isNaN(x)) throw "not a number";
@@ -33,18 +55,6 @@ function getFibonacci(x) {
     document.getElementById("loaderHere").innerHTML = loaderhidden;
     document.getElementById("errorBox").innerHTML = errorBox;
   }
-  fetch(`http://localhost:5050/fibonacci/${x}`)
-    .then(response => {
-      console.log(response);
-      return response.json();
-    })
-    .then(function(data) {
-      let y = data.result;
-      console.log(y);
-      document.getElementById("Y").innerHTML = y;
-      const loaderhidden = `<div class="loader:after"></div>`;
-      document.getElementById("loaderHere").innerHTML = loaderhidden;
-    });
 }
 
 // async function getFibonacci(x) {
@@ -53,12 +63,13 @@ function getFibonacci(x) {
 //   console.log(y);
 //   document.getElementById("Y").innerHTML = y;
 
-function getX() {
+function buttonClicked() {
   let x = document.getElementById("X").value;
+  validateX(x);
   document.getElementById("Y").innerHTML = getFibonacci(x);
   console.log(x);
 }
-document.getElementById("myButton").addEventListener("click", getX);
+document.getElementById("myButton").addEventListener("click", buttonClicked);
 
 function getLoader() {
   let loader = `<div class="loader"></div>`;
