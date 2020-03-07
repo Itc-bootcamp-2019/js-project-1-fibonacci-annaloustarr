@@ -17,9 +17,11 @@ let x;
 //   return fibRecursive(x - 1) + fibRecursive(x - 2);
 // }
 
+document.getElementById("loader").style.visibility = "hidden";
+document.getElementById("errorBox").style.visibility = "hidden";
+document.getElementById("Y").style.visibility = "hidden";
 function getFibonacci(x) {
-  const loader = `<div class="loader"></div>`;
-  document.getElementById("loaderHere").innerHTML = loader;
+  document.getElementById("loader").style.visibility = "visible";
 
   fetch(`http://localhost:5050/fibonacci/${x}`).then(response => {
     console.log(response);
@@ -27,15 +29,16 @@ function getFibonacci(x) {
       console.log("is this a 400 error?");
       response.text().then(function(text) {
         console.log(text);
-        document.getElementById("Y").innerHTML = text;
+        document.getElementById("loader").style.visibility = "hidden";
+        document.getElementById("meaningOfLife").innerHTML = text;
       });
     } else {
       return response.json().then(function(data) {
         let y = data.result;
         console.log(y);
+        document.getElementById("loader").style.visibility = "hidden";
+        document.getElementById("Y").style.visibility = "visible";
         document.getElementById("Y").innerHTML = y;
-        const loaderhidden = `<div class="loader:after"></div>`;
-        document.getElementById("loaderHere").innerHTML = loaderhidden;
       });
     }
   });
@@ -49,19 +52,16 @@ function validateX(x) {
     if (x > 50) throw "Can't be larger than 50";
   } catch (error) {
     console.log("error!");
-    const errorBox = `<div class="errorBox"></div>`;
-    const loaderhidden = `<div class="loader:after"></div>`;
+    // document.getElementById("fibonacciAnswer").style.visibility = "hidden";
+    // const errorBox = `<div class="errorBox"></div>`;
+    // document.getElementById("errorBox").innerHTML = errorBox;
+
     document.getElementById("thrownError").innerHTML = error;
-    document.getElementById("loaderHere").innerHTML = loaderhidden;
-    document.getElementById("errorBox").innerHTML = errorBox;
+    document.getElementById("loader").style.visibility = "hidden";
+    document.getElementById("errorBox").style.visibility = "visible";
+    document.getElementById("meaningOfLife").innerHTML = text;
   }
 }
-
-// async function getFibonacci(x) {
-//   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
-//   const y = await response.y();
-//   console.log(y);
-//   document.getElementById("Y").innerHTML = y;
 
 function buttonClicked() {
   let x = document.getElementById("X").value;
@@ -71,8 +71,14 @@ function buttonClicked() {
 }
 document.getElementById("myButton").addEventListener("click", buttonClicked);
 
-function getLoader() {
-  let loader = `<div class="loader"></div>`;
-  document.getElementById("Y").innerHTML = loader;
-}
-document.getElementById("myButton").addEventListener("click", getLoader);
+// function getLoader() {
+//   let loader = `<div class="loader"></div>`;
+//   document.getElementById("Y").innerHTML = loader;
+// }
+// document.getElementById("myButton").addEventListener("click", getLoader);
+
+// async function getFibonacci(x) {
+//   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
+//   const y = await response.y();
+//   console.log(y);
+//   document.getElementById("Y").innerHTML = y;

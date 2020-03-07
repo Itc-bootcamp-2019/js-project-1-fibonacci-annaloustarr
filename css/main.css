@@ -62,7 +62,6 @@
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
 .btn-outline-secondary {
   color: white;
 }
@@ -72,39 +71,32 @@
   height: 24px;
   left: 525px;
   top: 236px;
-
   font-family: Open Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 24px;
-  /* identical to box height, or 100% */
-
   display: flex;
   align-items: flex-end;
   text-decoration-line: underline;
-
   color: #373a3c;
 }
-.results {
+.meaningOfLife {
   position: absolute;
-  width: 182px;
-  height: 72px;
-  left: 164px;
-  top: 347px;
-
+  width: 277px;
+  height: 24px;
+  left: 525px;
+  top: 236px;
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 54px;
-  line-height: 72px;
-  /* identical to box height, or 133% */
-
+  font-size: 16px;
+  line-height: 24px;
   display: flex;
   align-items: flex-end;
-
-  color: #373a3c;
+  color: #d9534f;
 }
+
 .loader {
   position: absolute;
   width: 40px;
@@ -118,11 +110,6 @@
   border-bottom: 6px solid black;
   animation: spin 2s linear infinite;
 }
-.loader2 {
-  position: absolute;
-  left: 0px;
-  top: 6px;
-}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -131,8 +118,15 @@
     transform: rotate(360deg);
   }
 }
-.loader:after {
-  display: hidden;
+.loaderHidden {
+  display: none;
+}
+.loaderPosition {
+  position: absolute;
+  width: 52px;
+  height: 40px;
+  left: 513px;
+  top: 228px;
 }
 .errorBox {
   position: absolute;
@@ -140,7 +134,6 @@
   height: 33px;
   left: 278px;
   top: 275px;
-
   background: #f2dede;
   border: 1px solid #ebcccc;
   border-radius: 4px;
@@ -151,20 +144,17 @@
   height: 14.4px;
   left: 281.41px;
   top: 287px;
-
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-  /* or 150% */
-
   display: flex;
   align-items: flex-end;
   color: #a94442;
   z-index: 999;
 }
-.form-control::after {
+.inputAfterError {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   border: 1px solid #d9534f;
