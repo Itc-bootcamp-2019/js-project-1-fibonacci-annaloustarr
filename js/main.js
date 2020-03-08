@@ -17,11 +17,13 @@ let x;
 //   return fibRecursive(x - 1) + fibRecursive(x - 2);
 // }
 
-document.getElementById("loader").style.visibility = "hidden";
-document.getElementById("errorBox").style.visibility = "hidden";
-document.getElementById("Y").style.visibility = "hidden";
-let inputRed = document.querySelector(".inputRed");
-inputRed.classList.remove("inputRed");
+function clickReset() {
+  document.getElementById("thrownError").style.visibility = "hidden";
+  document.getElementById("errorBox").style.visibility = "hidden";
+  inputRed.classList.remove("inputRed");
+  document.getElementById("Y").style.visibility = "hidden";
+  document.getElementById("meaningOfLife").style.visibility = "hidden";
+}
 
 function getFibonacci(x) {
   document.getElementById("loader").style.visibility = "visible";
@@ -33,6 +35,7 @@ function getFibonacci(x) {
       response.text().then(function(text) {
         console.log(text);
         document.getElementById("loader").style.visibility = "hidden";
+        document.getElementById("meaningOfLife").style.visibility = "visible";
         document.getElementById("meaningOfLife").innerHTML = text;
       });
     } else {
@@ -57,6 +60,7 @@ function validateX(x) {
     console.log("error!");
 
     document.getElementById("thrownError").innerHTML = error;
+    document.getElementById("thrownError").style.visibility = "visible";
     document.getElementById("loader").style.visibility = "hidden";
     document.getElementById("errorBox").style.visibility = "visible";
     inputRed.classList.add("inputRed");
@@ -65,6 +69,7 @@ function validateX(x) {
 }
 
 function buttonClicked() {
+  clickReset();
   let x = document.getElementById("X").value;
   validateX(x);
   document.getElementById("Y").innerHTML = getFibonacci(x);
