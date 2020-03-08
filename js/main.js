@@ -17,6 +17,12 @@ let x;
 //   return fibRecursive(x - 1) + fibRecursive(x - 2);
 // }
 
+document.getElementById("loader").style.visibility = "hidden";
+document.getElementById("errorBox").style.visibility = "hidden";
+document.getElementById("Y").style.visibility = "hidden";
+let inputRed = document.querySelector(".inputRed");
+inputRed.classList.remove("inputRed");
+
 function clickReset() {
   document.getElementById("thrownError").style.visibility = "hidden";
   document.getElementById("errorBox").style.visibility = "hidden";
@@ -76,6 +82,14 @@ function buttonClicked() {
   console.log(x);
 }
 document.getElementById("myButton").addEventListener("click", buttonClicked);
+
+// function listFibonacci() {
+//   fetch(`http://localhost:5050/getFibonacciResults`).then(response => {
+//     console.log(response);
+//   });
+// }
+
+// document.addEventListener("DOMContentLoaded", listFibonacci);
 
 // async function getFibonacci(x) {
 //   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
