@@ -20,6 +20,9 @@ let x;
 document.getElementById("loader").style.visibility = "hidden";
 document.getElementById("errorBox").style.visibility = "hidden";
 document.getElementById("Y").style.visibility = "hidden";
+let inputRed = document.querySelector(".inputRed");
+inputRed.classList.remove("inputRed");
+
 function getFibonacci(x) {
   document.getElementById("loader").style.visibility = "visible";
 
@@ -59,6 +62,7 @@ function validateX(x) {
     document.getElementById("thrownError").innerHTML = error;
     document.getElementById("loader").style.visibility = "hidden";
     document.getElementById("errorBox").style.visibility = "visible";
+    inputRed.classList.add("inputRed");
     document.getElementById("meaningOfLife").innerHTML = text;
   }
 }
