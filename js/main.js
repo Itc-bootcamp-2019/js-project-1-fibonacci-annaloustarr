@@ -55,9 +55,6 @@ function validateX(x) {
     if (x > 50) throw "Can't be larger than 50";
   } catch (error) {
     console.log("error!");
-    // document.getElementById("fibonacciAnswer").style.visibility = "hidden";
-    // const errorBox = `<div class="errorBox"></div>`;
-    // document.getElementById("errorBox").innerHTML = errorBox;
 
     document.getElementById("thrownError").innerHTML = error;
     document.getElementById("loader").style.visibility = "hidden";
@@ -74,12 +71,6 @@ function buttonClicked() {
   console.log(x);
 }
 document.getElementById("myButton").addEventListener("click", buttonClicked);
-
-// function getLoader() {
-//   let loader = `<div class="loader"></div>`;
-//   document.getElementById("Y").innerHTML = loader;
-// }
-// document.getElementById("myButton").addEventListener("click", getLoader);
 
 // async function getFibonacci(x) {
 //   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
