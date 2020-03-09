@@ -19,7 +19,7 @@
 
   <body>
     <div class="header">Fibonacci Calculator</div>
-    <div class="fibonacciOf">The Fibonacci Of</div>
+    <div class="fibonacci-of">The Fibonacci Of</div>
 
     <div>
       <input
@@ -27,48 +27,40 @@
         type="text"
         id="X"
         placeholder="#"
-        class="form-control myInput inputRed"
+        class="form-control my-input input-red"
       />
-      <button type="button" class="myButton" id="myButton">is</button>
+      <button type="button" class="my-button" id="myButton">is</button>
     </div>
-    <!-- <div class="input-group mb-3 myInput">
-      <input
-        type="text"
-        id="X"
-        class="form-control"
-        placeholder="#"
-        aria-label="#"
-        aria-describedby="basic-addon2"
-      /> -->
-    <!-- <button
-        id="myButton"
-        class="btn btn-outline-secondary myButton"
-        type="button"
-        ;
-      >
-        is
-      </button> -->
 
     <div id="loader" class="loader"></div>
-    <div id="loaderPosition" class="loaderPosition"></div>
+    <div id="loaderPosition" class="loader-position"></div>
 
-    <div class="fibonacciAnswer" id="Y"></div>
+    <div class="fibonacci-answer" id="Y"></div>
 
-    <div class="meaningOfLife" id="meaningOfLife">
-      <!-- Server Error: 42 is the meaning of life -->
-    </div>
+    <div class="meaning-of-life" id="meaningOfLife"></div>
 
-    <div id="thrownError" class="thrownError"></div>
-    <div id="errorBox" class="errorBox"></div>
+    <div id="thrownError" class="thrown-error"></div>
+    <div id="errorBox" class="error-box"></div>
 
-    <div id="resultsTitle" class="resultsTitle">Results</div>
-    <div id="loader2" class="loader loader2Position"></div>
+    <div id="resultsTitle" class="results-title">Results</div>
+    <div id="loader2" class="loader loader2-position"></div>
 
     <div id="output"></div>
 
     <div class="resultsList">
-      <ul id="dataList" class="dataList"></ul>
+      <ul id="dataList" class="data-list"></ul>
     </div>
+
+    <form action="/action_page.php">
+      <input
+        type="checkbox"
+        id="saveCalculation"
+        class="checkbox"
+        name="scalc"
+        value="scalc"
+      />
+      <label for="scalc" class="checkbox-label">Save Calculation</label>
+    </form>
 
     <script src="js/main.js"></script>
   </body>
