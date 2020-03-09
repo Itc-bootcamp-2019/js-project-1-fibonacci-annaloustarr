@@ -51,6 +51,7 @@ function getFibonacci(x) {
         document.getElementById("loader").style.visibility = "hidden";
         document.getElementById("Y").style.visibility = "visible";
         document.getElementById("Y").innerHTML = y;
+        listFibonacci();
       });
     }
   });
@@ -83,13 +84,65 @@ function buttonClicked() {
 }
 document.getElementById("myButton").addEventListener("click", buttonClicked);
 
-// function listFibonacci() {
-//   fetch(`http://localhost:5050/getFibonacciResults`).then(response => {
-//     console.log(response);
-//   });
+function listFibonacci() {
+  fetch(`http://localhost:5050/getFibonacciResults`).then(response => {
+    console.log(response);
+
+    return response.json().then(function(dataList) {
+      console.log(dataList);
+      let myList = dataList;
+      console.log(myList.results);
+      let listArray = myList.results;
+      console.log(listArray[0]);
+
+      let listDiv = document.getElementById("dataList");
+
+      for (let i = 0; i < listArray.length; i++) {
+        let myDate = new Date(listArray[i].createdDate);
+        let li = document.createElement("li");
+        li.innerHTML =
+          "The Fibonacci of " +
+          listArray[i].number +
+          " is " +
+          listArray[i].result +
+          ". Created at: " +
+          myDate;
+        listDiv.appendChild(li);
+      }
+      document.getElementById("loader2").style.visibility = "hidden";
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", listFibonacci);
+
+// Date()
+
+// function makeUL(listArray) {
+//   let listDiv = document.getElementById("resultsList");
+//   let ul = document.createElement("ul");
+//   for (let i = 0; i < listArray.length; i++) {
+//     let li = document.createElement("li");
+//     li.innerHTML = listArray[i].resultsList;
+//     ul.appendChild(li);
+//   }
+//   listDiv.appendChild(ul);
 // }
 
-// document.addEventListener("DOMContentLoaded", listFibonacci);
+// let dataOject = JSON.parse(listArray);
+//       let listItemString = $("#listItem").html();
+//       listArray.forEach(buildNewList);
+
+//       function buildNewList(item, index) {
+//         let listItem = $("<li>" + listItemString + "</li>");
+//         let listItemNumber = $(".number", listItem);
+//         listItemNumber.html(item.number);
+//         var listItemResult = $(".result", listItem);
+//         listItemResult.html(item.result);
+//         var listItemDate = $(".date", listItem);
+//         listItemDate.html(item.createdDate);
+//         $("#dataList").append(listItem);
+//       }
 
 // async function getFibonacci(x) {
 //   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
