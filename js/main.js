@@ -3,14 +3,6 @@ let second = 1;
 let y;
 let x;
 
-// function fibonacci(x) {
-//   for (let i = 2; i <= x; i++) {
-//     y = first + second;
-//     first = second;
-//     second = y;
-//     document.getElementById("Y").innerHTML = y;
-//   }
-// }
 // function fibRecursive(x) {
 //   if (x < 2) return x;
 //   return fibRecursive(x - 1) + fibRecursive(x - 2);
@@ -28,6 +20,16 @@ function clickReset() {
   inputRed.classList.remove("inputRed");
   document.getElementById("Y").classList.add("hidden");
   document.getElementById("meaningOfLife").classList.add("hidden");
+}
+
+function fibonacci(x) {
+  for (let i = 2; i <= x; i++) {
+    y = first + second;
+    first = second;
+    second = y;
+    document.getElementById("Y").innerHTML = y;
+    document.getElementById("Y").classList.remove("hidden");
+  }
 }
 
 function getFibonacci(x) {
@@ -72,8 +74,16 @@ function buttonClicked() {
   clickReset();
   let x = document.getElementById("X").value;
   validateX(x);
-  document.getElementById("Y").innerHTML = getFibonacci(x);
+  let thisThing = document.querySelector("#saveCalc");
+  if (thisThing.checked == true) {
+    console.log("checkbox is checked");
+    getFibonacci(x);
+  } else {
+    console.log("Not");
+    fibonacci(x);
+  }
 }
+
 document.getElementById("myButton").addEventListener("click", buttonClicked);
 
 function listFibonacci() {
