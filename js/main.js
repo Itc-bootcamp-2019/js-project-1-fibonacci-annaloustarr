@@ -74,12 +74,10 @@ function buttonClicked() {
   clickReset();
   let x = document.getElementById("X").value;
   validateX(x);
-  let thisThing = document.querySelector("#saveCalc");
-  if (thisThing.checked == true) {
-    console.log("checkbox is checked");
+  let myCheckbox = document.querySelector("#saveCalc");
+  if (myCheckbox.checked == true) {
     getFibonacci(x);
   } else {
-    console.log("Not");
     fibonacci(x);
   }
 }
@@ -91,8 +89,13 @@ function listFibonacci() {
     return response.json().then(function(dataList) {
       let myList = dataList;
       let listArray = myList.results;
+      console.log(listArray);
 
       let listDiv = document.getElementById("dataList");
+      document.getElementById("dataList").innerHTML = "";
+      listArray.sort(
+        (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
+      );
 
       for (let i = 0; i < listArray.length; i++) {
         let myDate = new Date(listArray[i].createdDate);
@@ -110,6 +113,69 @@ function listFibonacci() {
     });
   });
 }
+
+function myDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+document.getElementById("dropButton").addEventListener("click", myDropdown);
+
+// Close the dropdown if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches(".dropbtn")) {
+//     let dropdowns = document.getElementsByClassName("dropdown-content");
+//     let i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       let openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains("show")) {
+//         openDropdown.classList.remove("show");
+//       }
+//     }
+//   }
+// };
+
+// function sortList() {
+//   console.log("sorting...");
+//   var list, i, switching, b, shouldSwitch;
+//   list = document.getElementById("dataList");
+//   switching = true;
+//   while (switching) {
+//     switching = false;
+//     b = list.getElementsByTagName("li");
+//     for (i = 0; i < b.length - 1; i++) {
+//       shouldSwitch = false;
+//       if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+//         shouldSwitch = true;
+//         break;
+//       }
+//     }
+//     if (shouldSwitch) {
+//       b[i].parentNode.insertBefore(b[i + 1], b[i]);
+//       switching = true;
+//     }
+//   }
+// }
+
+// function sortListAsc(ul) {
+//   console.log("sorting list");
+//   let newul = ul.cloneNode(false);
+//   console.log(newul);
+
+//   let lis = [];
+//   for (let i = ul.childNodes.length; i--; ) {
+//     if (ul.childNodes[i].nodeName === "li") lis.push(ul.childNodes[i]);
+//     console.log(lis);
+//   }
+//   lis.sort(function(a, b) {
+//     return (
+//       parseInt(a.childNodes[0].data, 10) - parseInt(b.childNodes[0].data, 10)
+//     );
+//   });
+//   for (var i = 0; i < lis.length; i++) newul.appendChild(lis[i]);
+//   ul.parentNode.replaceChild(newul, ul);
+// }
+
+// document.getElementById("numAsc").addEventListener("click", sortList);
+// .addEventListener("click", sortListAsc(document.getElementById("dataList")));
 
 document.addEventListener("DOMContentLoaded", listFibonacci);
 

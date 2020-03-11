@@ -10,11 +10,8 @@
   font-weight: normal;
   font-size: 72px;
   line-height: 79px;
-  /* identical to box height, or 110% */
-
   display: flex;
   align-items: flex-end;
-
   color: #373a3c;
 }
 .fibonacci-of {
@@ -230,4 +227,80 @@ li {
   display: flex;
   align-items: flex-end;
   color: #373a3c;
+}
+
+.dropbtn {
+  position: absolute;
+  width: 122px;
+  height: 38px;
+  left: 164px;
+  top: 418px;
+
+  background: #e6e6e6;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #373a3c;
+  text-align: left;
+  padding-left: 16px;
+
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 164px;
+  top: 460px;
+  background-color: #f1f1f1;
+  overflow: auto;
+
+  z-index: 1;
+}
+
+.dropdown-content button {
+  width: 149px;
+  height: 42px;
+
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 25px;
+  color: #373a3c;
+  padding: 8px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.show {
+  display: block;
+}
+
+.triangle-down {
+  position: absolute;
+  left: 264px;
+  top: 453px;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid #373a3c;
 }
