@@ -51,31 +51,39 @@
       <ul id="dataList" class="data-list"></ul>
     </div>
 
-    <form id="checkboxForm">
-      <input type="checkbox" id="saveCalc" class="checkbox" />
-      <label for="saveCalc" class="checkbox-label">Save Calculation</label>
-    </form>
+    <div id="inputToHide">
+      <form id="checkboxForm">
+        <input type="checkbox" id="saveCalc" class="checkbox" />
+        <label for="saveCalc" class="checkbox-label">Save Calculation</label>
+      </form>
+    </div>
 
-    <div class="triangle-down"></div>
+    <!-- <div class="triangle-down"></div>
+    <div class="sortby">Sort By</div> -->
 
     <div class="dropdown">
-      <button id="dropButton" class="dropbtn">
-        Sort By
-      </button>
-      <div id="myDropdown" class="dropdown-content">
-        <button class="dropdown-item" type="button" id="numAsc">
+      <select
+        id="dropButton"
+        selected="Sort By"
+        class="dropbtn dropdown-content"
+        onchange="getValue()"
+      >
+        <!-- <option value="sortBy" id="sortBy">
+          Sort By
+        </option> -->
+        <option value="numAsc" id="numAsc">
           Number Asc
-        </button>
-        <button class="dropdown-item" type="button" id="numDesc">
+        </option>
+        <option value="numDesc" id="numDesc">
           Number Desc
-        </button>
-        <button class="dropdown-item" type="button" id="dateAsc">
+        </option>
+        <option value="dateAsc" id="dateAsc">
           Date Asc
-        </button>
-        <button class="dropdown-item" type="button" id="dateDesc">
+        </option>
+        <option value="dateDesc" id="dateDesc">
           Date Desc
-        </button>
-      </div>
+        </option>
+      </select>
     </div>
 
     <script src="js/main.js"></script>

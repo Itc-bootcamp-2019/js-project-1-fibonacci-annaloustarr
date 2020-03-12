@@ -1,5 +1,3 @@
-let first = 0;
-let second = 1;
 let y;
 let x;
 
@@ -20,9 +18,12 @@ function clickReset() {
   inputRed.classList.remove("inputRed");
   document.getElementById("Y").classList.add("hidden");
   document.getElementById("meaningOfLife").classList.add("hidden");
+  document.getElementById("inputToHide").classList.remove("hidden");
 }
 
 function fibonacci(x) {
+  let first = 0;
+  let second = 1;
   for (let i = 2; i <= x; i++) {
     y = first + second;
     first = second;
@@ -65,6 +66,7 @@ function validateX(x) {
     document.getElementById("thrownError").classList.remove("hidden");
     document.getElementById("loader").classList.add("hidden");
     document.getElementById("errorBox").classList.remove("hidden");
+    document.getElementById("inputToHide").classList.add("hidden");
     inputRed.classList.add("inputRed");
     document.getElementById("meaningOfLife").innerHTML = text;
   }
@@ -84,18 +86,38 @@ function buttonClicked() {
 
 document.getElementById("myButton").addEventListener("click", buttonClicked);
 
+let selected;
+let dropdown = document.getElementById("dropButton");
+
+function getValue() {
+  selected = document.getElementById("dropButton").value;
+  listFibonacci();
+}
+
+// document.getElementById("dropButton").addEventListener("onchange", getValue);
+
 function listFibonacci() {
   fetch(`http://localhost:5050/getFibonacciResults`).then(response => {
     return response.json().then(function(dataList) {
       let myList = dataList;
       let listArray = myList.results;
-      console.log(listArray);
 
       let listDiv = document.getElementById("dataList");
       document.getElementById("dataList").innerHTML = "";
-      listArray.sort(
-        (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
-      );
+
+      if (selected === "numAsc") {
+        listArray.sort((a, b) => new Date(a.number) - new Date(b.number));
+      } else if (selected === "numDesc") {
+        listArray.sort((a, b) => new Date(b.number) - new Date(a.number));
+      } else if (selected === "dateAsc") {
+        listArray.sort(
+          (a, b) => new Date(a.createdDate) - new Date(b.createdDate)
+        );
+      } else {
+        listArray.sort(
+          (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
+        );
+      }
 
       for (let i = 0; i < listArray.length; i++) {
         let myDate = new Date(listArray[i].createdDate);
@@ -114,68 +136,10 @@ function listFibonacci() {
   });
 }
 
-function myDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-document.getElementById("dropButton").addEventListener("click", myDropdown);
-
-// Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches(".dropbtn")) {
-//     let dropdowns = document.getElementsByClassName("dropdown-content");
-//     let i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       let openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains("show")) {
-//         openDropdown.classList.remove("show");
-//       }
-//     }
-//   }
-// };
-
-// function sortList() {
-//   console.log("sorting...");
-//   var list, i, switching, b, shouldSwitch;
-//   list = document.getElementById("dataList");
-//   switching = true;
-//   while (switching) {
-//     switching = false;
-//     b = list.getElementsByTagName("li");
-//     for (i = 0; i < b.length - 1; i++) {
-//       shouldSwitch = false;
-//       if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-//         shouldSwitch = true;
-//         break;
-//       }
-//     }
-//     if (shouldSwitch) {
-//       b[i].parentNode.insertBefore(b[i + 1], b[i]);
-//       switching = true;
-//     }
-//   }
+// function myDropdown() {
+//   document.getElementById("myDropdown").classList.toggle("show");
 // }
-
-// function sortListAsc(ul) {
-//   console.log("sorting list");
-//   let newul = ul.cloneNode(false);
-//   console.log(newul);
-
-//   let lis = [];
-//   for (let i = ul.childNodes.length; i--; ) {
-//     if (ul.childNodes[i].nodeName === "li") lis.push(ul.childNodes[i]);
-//     console.log(lis);
-//   }
-//   lis.sort(function(a, b) {
-//     return (
-//       parseInt(a.childNodes[0].data, 10) - parseInt(b.childNodes[0].data, 10)
-//     );
-//   });
-//   for (var i = 0; i < lis.length; i++) newul.appendChild(lis[i]);
-//   ul.parentNode.replaceChild(newul, ul);
-// }
-
-// document.getElementById("numAsc").addEventListener("click", sortList);
-// .addEventListener("click", sortListAsc(document.getElementById("dataList")));
+// document.getElementById("dropButton").addEventListener("click", myDropdown);
 
 document.addEventListener("DOMContentLoaded", listFibonacci);
 
