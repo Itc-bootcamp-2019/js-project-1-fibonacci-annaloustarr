@@ -1,12 +1,14 @@
 let y;
 let x;
 
+// hide answers and errors when opening page
 document.getElementById("loader").classList.add("hidden");
 document.getElementById("errorBox").classList.add("hidden");
 document.getElementById("Y").classList.add("hidden");
 let inputRed = document.querySelector(".input-red");
 inputRed.classList.remove("input-red");
 
+// hide answers and errors on button click
 function clickReset() {
   document.getElementById("thrownError").classList.add("hidden");
   document.getElementById("errorBox").classList.add("hidden");
@@ -16,18 +18,21 @@ function clickReset() {
   document.getElementById("inputToHide").classList.remove("hidden");
 }
 
+// calculate fib locally
 function fibonacci(x) {
+  let y = 1; // incase user enters 1
   let first = 0;
   let second = 1;
   for (let i = 2; i <= x; i++) {
     y = first + second;
     first = second;
     second = y;
-    document.getElementById("Y").innerHTML = y;
-    document.getElementById("Y").classList.remove("hidden");
   }
+  document.getElementById("Y").innerHTML = y;
+  document.getElementById("Y").classList.remove("hidden");
 }
 
+// get fib from the server and call function to get result list
 async function getFibonacci(x) {
   document.getElementById("loader").classList.remove("hidden");
   document.getElementById("thrownError").classList.add("hidden");
@@ -47,12 +52,14 @@ async function getFibonacci(x) {
   }
 }
 
+// Ensure entered X is valid or show error message
 function validateX(x) {
   try {
-    if (x == "") throw "empty";
+    if (x === "") throw "empty";
     if (isNaN(x)) throw "not a number";
     x = Number(x);
     if (x > 50) throw "Can't be larger than 50";
+    if (x <= 0) throw "Can't be zero or less";
   } catch (error) {
     document.getElementById("thrownError").innerHTML = error;
     document.getElementById("thrownError").classList.remove("hidden");
@@ -64,20 +71,20 @@ function validateX(x) {
   }
 }
 
+// resets page, validates X and gets fib locally or on server depending on checkbox, after button click
 function buttonClicked() {
   clickReset();
   let x = document.getElementById("X").value;
   validateX(x);
   let myCheckbox = document.querySelector("#saveCalc");
-  if (myCheckbox.checked == true) {
+  if (myCheckbox.checked === true) {
     getFibonacci(x);
   } else {
     fibonacci(x);
   }
 }
 
-document.getElementById("myButton").addEventListener("click", buttonClicked);
-
+// gets the dropdown selection and then creates a new results list
 let selected;
 let dropdown = document.getElementById("dropButton");
 
@@ -86,8 +93,7 @@ function getValue() {
   listFibonacci();
 }
 
-// document.getElementById("dropButton").addEventListener("onselect", getValue);
-
+// removes the results list
 let listDiv = document.getElementById("dataList");
 
 function clearList() {
@@ -98,13 +104,14 @@ function clearList() {
   }
 }
 
+// creates a results list depending on droplist (default sort is desc date creation)
 async function listFibonacci() {
+  document.getElementById("loader2").classList.remove("hidden");
   let response = await fetch(`http://localhost:5050/getFibonacciResults`);
   let dataList = await response.json();
 
   let myList = dataList;
   let listArray = myList.results;
-
   clearList();
 
   if (selected === "numAsc") {
@@ -126,7 +133,7 @@ async function listFibonacci() {
     text2.innerText = " is ";
     let text3 = document.createElement("span");
     let myDate = new Date(listArray[i].createdDate).toString();
-    text3.innerText = `. Calculated at ${myDate}`;
+    text3.innerText = ". Calculated at ";
     let numberX = document.createElement("span");
     numberX.className = "bold";
     numberX.innerText = listArray[i].number;
@@ -134,16 +141,13 @@ async function listFibonacci() {
     resultY.className = "bold";
     resultY.innerHTML = listArray[i].result;
 
-    li.append(text1, numberX, text2, resultY, text3);
-
+    li.append(text1, numberX, text2, resultY, text3, myDate);
     listDiv.appendChild(li);
   }
   document.getElementById("loader2").classList.add("hidden");
 }
 
-// function myDropdown() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
-// document.getElementById("dropButton").addEventListener("click", myDropdown);
-
+//Event Listeners
+document.getElementById("myButton").addEventListener("click", buttonClicked);
+document.getElementById("dropButton").addEventListener("change", getValue);
 document.addEventListener("DOMContentLoaded", listFibonacci);
