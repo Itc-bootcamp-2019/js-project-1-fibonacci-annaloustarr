@@ -33,26 +33,23 @@ function fibonacci(x) {
   }
 }
 
-function getFibonacci(x) {
+async function getFibonacci(x) {
   document.getElementById("loader").classList.remove("hidden");
   document.getElementById("thrownError").classList.add("hidden");
-  fetch(`http://localhost:5050/fibonacci/${x}`).then(response => {
-    if (response.status === 400) {
-      response.text().then(function(text) {
-        document.getElementById("loader").classList.add("hidden");
-        document.getElementById("meaningOfLife").classList.remove("hidden");
-        document.getElementById("meaningOfLife").innerHTML = text;
-      });
-    } else {
-      return response.json().then(function(data) {
-        let y = data.result;
-        document.getElementById("loader").classList.add("hidden");
-        document.getElementById("Y").classList.remove("hidden");
-        document.getElementById("Y").innerHTML = y;
-        listFibonacci();
-      });
-    }
-  });
+  let response = await fetch(`http://localhost:5050/fibonacci/${x}`);
+  if (response.status === 400) {
+    let text = await response.text();
+    document.getElementById("loader").classList.add("hidden");
+    document.getElementById("meaningOfLife").classList.remove("hidden");
+    document.getElementById("meaningOfLife").innerHTML = text;
+  } else {
+    let data = await response.json();
+    let y = data.result;
+    document.getElementById("loader").classList.add("hidden");
+    document.getElementById("Y").classList.remove("hidden");
+    document.getElementById("Y").innerHTML = y;
+    listFibonacci();
+  }
 }
 
 function validateX(x) {
@@ -94,46 +91,51 @@ function getValue() {
   listFibonacci();
 }
 
-// document.getElementById("dropButton").addEventListener("onchange", getValue);
+// document.getElementById("dropButton").addEventListener("onselect", getValue);
 
-function listFibonacci() {
-  fetch(`http://localhost:5050/getFibonacciResults`).then(response => {
-    return response.json().then(function(dataList) {
-      let myList = dataList;
-      let listArray = myList.results;
+async function listFibonacci() {
+  let response = await fetch(`http://localhost:5050/getFibonacciResults`);
+  let dataList = await response.json();
 
-      let listDiv = document.getElementById("dataList");
-      document.getElementById("dataList").innerHTML = "";
+  let myList = dataList;
+  let listArray = myList.results;
 
-      if (selected === "numAsc") {
-        listArray.sort((a, b) => new Date(a.number) - new Date(b.number));
-      } else if (selected === "numDesc") {
-        listArray.sort((a, b) => new Date(b.number) - new Date(a.number));
-      } else if (selected === "dateAsc") {
-        listArray.sort(
-          (a, b) => new Date(a.createdDate) - new Date(b.createdDate)
-        );
-      } else {
-        listArray.sort(
-          (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
-        );
-      }
+  let listDiv = document.getElementById("dataList");
+  document.getElementById("dataList").innerHTML = "";
 
-      for (let i = 0; i < listArray.length; i++) {
-        let myDate = new Date(listArray[i].createdDate);
-        let li = document.createElement("li");
-        li.innerHTML =
-          "The Fibonacci of <b>" +
-          listArray[i].number +
-          "</b> is <b>" +
-          listArray[i].result +
-          "</b>. Created at: " +
-          myDate;
-        listDiv.appendChild(li);
-      }
-      document.getElementById("loader2").classList.add("hidden");
-    });
-  });
+  if (selected === "numAsc") {
+    listArray.sort((a, b) => new Date(a.number) - new Date(b.number));
+  } else if (selected === "numDesc") {
+    listArray.sort((a, b) => new Date(b.number) - new Date(a.number));
+  } else if (selected === "dateAsc") {
+    listArray.sort((a, b) => new Date(a.createdDate) - new Date(b.createdDate));
+  } else {
+    listArray.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+  }
+
+  for (let i = 0; i < listArray.length; i++) {
+    let li = document.createElement("li");
+
+    let text1 = document.createElement("span");
+    text1.innerText = "The Fibonacci Of ";
+    let text2 = document.createElement("span");
+    text2.innerText = " is ";
+    let text3 = document.createElement("span");
+    let myDate = new Date(listArray[i].createdDate).toString();
+    text3.innerText = `. Calculated at ${myDate}`;
+    let numberX = document.createElement("span");
+    numberX.className = "bold";
+    numberX.innerText = listArray[i].number;
+    let resultY = document.createElement("span");
+    resultY.className = "bold";
+    resultY.innerHTML = listArray[i].result;
+
+    li.append(text1, numberX, text2, resultY, text3);
+
+    listDiv.appendChild(li);
+  }
+
+  document.getElementById("loader2").classList.add("hidden");
 }
 
 // function myDropdown() {
@@ -142,8 +144,3 @@ function listFibonacci() {
 // document.getElementById("dropButton").addEventListener("click", myDropdown);
 
 document.addEventListener("DOMContentLoaded", listFibonacci);
-
-// async function getFibonacci(x) {
-//   const response = await fetch(`http://localhost:5050/fibonacci/:number`);
-//   const y = await response.y();
-//   document.getElementById("Y").innerHTML = y;

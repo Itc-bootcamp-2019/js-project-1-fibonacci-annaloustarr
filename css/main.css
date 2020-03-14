@@ -64,13 +64,7 @@
 button:focus {
   outline: 0;
 }
-/* .input-group > .form-control:not(:last-child) {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.btn-outline-secondary {
-  color: white;
-} */
+
 .fibonacci-answer {
   position: absolute;
   width: 28px;
@@ -173,6 +167,9 @@ button:focus {
   align-items: flex-end;
   color: #373a3c;
 }
+.bold {
+  font-weight: bold;
+}
 .loader2-position {
   position: absolute;
   left: 357px;
@@ -253,53 +250,33 @@ li {
   outline: none;
   cursor: pointer;
 }
-/* .sortby {
-  position: absolute;
-  left: 180px;
-  top: 444px;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  color: #373a3c;
-  z-index: 5;
-} */
-
-/* .dropdown {
-  position: relative;
-  display: inline-block;
-} */
 
 .dropdown-content {
   position: absolute;
   left: 164px;
-  top: 417px;
-  background-color: #f1f1f1;
-  overflow: auto;
-
-  z-index: 1;
-}
-
-.dropdown-content option {
-  width: 149px;
+  top: 435px;
+  width: 122px;
   height: 42px;
-
   background: #ffffff;
   border: 1px solid #cccccc;
   box-sizing: border-box;
   border-radius: 4px;
-
+  overflow: auto;
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 25px;
+  background: #f2f2f2;
   color: #373a3c;
   padding: 8px 20px;
   text-decoration: none;
   display: block;
+  outline: none;
+
+  z-index: 1;
 }
+
 select {
   -webkit-appearance: none;
 }
