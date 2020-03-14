@@ -1,11 +1,6 @@
 let y;
 let x;
 
-// function fibRecursive(x) {
-//   if (x < 2) return x;
-//   return fibRecursive(x - 1) + fibRecursive(x - 2);
-// }
-
 document.getElementById("loader").classList.add("hidden");
 document.getElementById("errorBox").classList.add("hidden");
 document.getElementById("Y").classList.add("hidden");
@@ -93,6 +88,16 @@ function getValue() {
 
 // document.getElementById("dropButton").addEventListener("onselect", getValue);
 
+let listDiv = document.getElementById("dataList");
+
+function clearList() {
+  let child = listDiv.lastElementChild;
+  while (child) {
+    listDiv.removeChild(child);
+    child = listDiv.lastElementChild;
+  }
+}
+
 async function listFibonacci() {
   let response = await fetch(`http://localhost:5050/getFibonacciResults`);
   let dataList = await response.json();
@@ -100,8 +105,7 @@ async function listFibonacci() {
   let myList = dataList;
   let listArray = myList.results;
 
-  let listDiv = document.getElementById("dataList");
-  document.getElementById("dataList").innerHTML = "";
+  clearList();
 
   if (selected === "numAsc") {
     listArray.sort((a, b) => new Date(a.number) - new Date(b.number));
@@ -134,7 +138,6 @@ async function listFibonacci() {
 
     listDiv.appendChild(li);
   }
-
   document.getElementById("loader2").classList.add("hidden");
 }
 
