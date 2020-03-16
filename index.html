@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fibonacci sequence</title>
+    <title>Stock Exchange</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -19,66 +19,30 @@
   </head>
 
   <body>
-    <div class="header">Fibonacci Calculator</div>
-    <div class="fibonacci-of">The Fibonacci Of</div>
-
-    <div>
+    <div class="input-group mb-3 my-input">
       <input
-        name="#"
         type="text"
-        id="X"
-        placeholder="#"
-        class="form-control my-input input-red"
+        class="form-control"
+        placeholder="aa"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
       />
-      <button type="button" class="my-button" id="myButton">is</button>
-    </div>
+      <div class="input-group-append">
+        <button
+          id="searchButton"
+          class="btn btn-outline-secondary"
+          type="button"
+        >
+          Search
+        </button>
 
-    <div id="loader" class="loader"></div>
-    <div id="loaderPosition" class="loader-position"></div>
+        <div id="searchResults" class="search-results">Search Results</div>
+        <div id="loader" class="loader loader-position"></div>
 
-    <div class="fibonacci-answer" id="Y"></div>
-
-    <div class="meaning-of-life" id="meaningOfLife"></div>
-
-    <div id="thrownError" class="thrown-error"></div>
-    <div id="errorBox" class="error-box"></div>
-
-    <div id="resultsTitle" class="results-title">Results</div>
-    <div id="loader2" class="loader loader2-position"></div>
-
-    <div id="output"></div>
-
-    <div class="resultsList">
-      <ul id="dataList" class="data-list"></ul>
-    </div>
-
-    <div id="inputToHide">
-      <form id="checkboxForm">
-        <input type="checkbox" id="saveCalc" class="checkbox" />
-        <label for="saveCalc" class="checkbox-label">Save Calculation</label>
-      </form>
-    </div>
-
-    <div class="triangle-down"></div>
-
-    <div class="dropdown">
-      <select id="dropButton" title="Sort By" class="dropdown-content">
-        <option value="numAsc" id="numAsc">
-          Sort By
-        </option>
-        <option value="numAsc" id="numAsc">
-          Number Asc
-        </option>
-        <option value="numDesc" id="numDesc">
-          Number Desc
-        </option>
-        <option value="dateAsc" id="dateAsc">
-          Date Asc
-        </option>
-        <option value="dateDesc" id="dateDesc">
-          Date Desc
-        </option>
-      </select>
+        <div class="resultsList">
+          <ul id="dataList" class="data-list"></ul>
+        </div>
+      </div>
     </div>
 
     <script src="js/main.js"></script>
